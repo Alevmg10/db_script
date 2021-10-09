@@ -50,7 +50,7 @@ def add_user(first_name, last_name, phone,email):
 	mycur= myconn.cursor()
 
 	commands= ''' INSERT INTO users (first_name, last_name, phone,email) VALUES (%s, %s, %s, %s) '''
-	mycur.execute(commands, (first_name, last_name, email))
+	mycur.execute(commands, (first_name, last_name, phone,email))
 	print("Registered employee")
 	
 	
@@ -78,7 +78,7 @@ def update_user_data(id, first_name, last_name, phone,email):
 	
 # Display all data
 def show_users():
-
+	
 	connect_db()
 	mycur=myconn.cursor()
 	commands= ''' SELECT * FROM users ORDER BY id ASC'''
@@ -86,15 +86,14 @@ def show_users():
 	mycur.execute(commands)
 	myconn.commit()
     
-    rows = mycur.fetchall()
+    	rows = mycur.fetchall()
 
-    for row in rows:
-
-        print("Id =", row[0])
-        print("Name =", row[1])
-        print("Apellido =", row[2])
-        print("Phone =", row[3])
-        print("Email =", row[4], "\n")
+   	for row in rows:
+		print("Id =", row[0])
+        	print("First Name =", row[1])
+        	print("Last Name =", row[2])
+        	print("Phone =", row[3])
+        	print("Email =", row[4], "\n")
 
 	myconn.commit()
 	myconn.close()
