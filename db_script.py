@@ -2,7 +2,6 @@ import psycopg2
 import os
 from dotenv import load_dotenv, find_dotenv
 
-
 load_dotenv(find_dotenv())
 
 
@@ -12,7 +11,7 @@ myconn = psycopg2.connect(
 		user= os.getenv("DBUSER"),
 		password= os.getenv("DBPASSWORD"),
 		host= os.getenv("DBHOST")
-	)
+		)
 
 
 # Connect to database
@@ -33,10 +32,10 @@ def create_table():
 	mycur= myconn.cursor()
 
 	commands=''' CREATE TABLE users ( id BIGSERIAL PRIMARY KEY NOT NULL,
-									first_name VARCHAR(50) NOT NULL,
-									last_name VARCHAR(50) NOT NULL,
-									phone VARCHAR(100) NOT NULL,
-									email VARCHAR(200) NOT NULL ) '''
+					first_name VARCHAR(50) NOT NULL,
+					last_name VARCHAR(50) NOT NULL,
+					phone VARCHAR(100) NOT NULL,
+					email VARCHAR(200) NOT NULL ) '''
 	mycur.execute(commands)
 	mycur.close()
 	myconn.commit()
